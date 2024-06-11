@@ -1,0 +1,32 @@
+.lowentry-mui--date-picker
+{
+    padding: 0.5rem;
+}
+
+.lowentry-mui--date-picker .lowentry-mui--date-picker--arrow-button
+{
+    min-width: 0;
+    padding:   6px 12px;
+}
+
+.lowentry-mui--date-picker .lowentry-mui--date-picker--textfield
+{
+    max-width: 150px;
+    cursor:    pointer !important;
+}
+
+.lowentry-mui--date-picker .lowentry-mui--date-picker--textfield .MuiInputBase-input
+{
+    text-align: center;
+    padding:    10px 0;
+}
+
+.lowentry-mui--date-picker .lowentry-mui--date-picker--textfield .MuiOutlinedInput-notchedOutline
+{
+    border: 0 !important;
+}
+
+.lowentry-mui--date-picker .lowentry-mui--date-picker--textfield *
+{
+    cursor: pointer !important;
+}

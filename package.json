@@ -1,0 +1,34 @@
+{
+  "name": "@lowentry/mui",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Provides utilities for Material UI.",
+  "author": "Low Entry",
+  "license": "MIT",
+  "keywords": [
+    "materialui",
+    "mui",
+    "plugin",
+    "utility",
+    "utilities"
+  ],
+  "homepage": "https://github.com/LowEntry/lowentry-js-mui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LowEntry/lowentry-js-mui.git"
+  },
+  "scripts": {
+    "test": "node --check index.js"
+  },
+  "dependencies": {
+    "@emotion/react": "*",
+    "@emotion/styled": "*",
+    "@lowentry/react-redux": "^1",
+    "@mui/icons-material": "*",
+    "@mui/lab": "*",
+    "@mui/material": "^5",
+    "@mui/x-date-pickers": "^7",
+    "dayjs": "^1"
+  }
+}

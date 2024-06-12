@@ -47,7 +47,7 @@ const generateIndex = () =>
 	}
 	return imports.join('\n') + '\n';
 };
-fs.writeFileSync(path.resolve(__dirname, 'src/index.js'), generateIndex());
+fs.writeFileSync(path.resolve(__dirname, 'dist/src/index.js'), generateIndex());
 
 
 export default {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {STRING} from '@lowentry/utils';
-import {Dialog} from '@mui/material';
+import {Dialog as MuiDialog} from '@mui/material';
 
 
 export const Dialog = LeRed.memo(({onClose, children, ...props}) =>
@@ -22,8 +22,8 @@ export const Dialog = LeRed.memo(({onClose, children, ...props}) =>
 	
 	
 	return (<>
-		<Dialog onClose={onClosed} {...props}>
+		<MuiDialog onClose={onClosed} {...props}>
 			{children}
-		</Dialog>
+		</MuiDialog>
 	</>);
 });

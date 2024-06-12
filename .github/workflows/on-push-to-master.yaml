@@ -21,6 +21,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       #- run: npm ci
       - run: npm test
+      - run: npm build
       - run: git config --global user.name "github-actions[bot]"
       - run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - run: npm version patch -m "Upgrade to %s [skip ci]"

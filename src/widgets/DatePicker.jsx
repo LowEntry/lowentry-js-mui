@@ -101,8 +101,11 @@ const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, children
 				value={value}
 				onChange={onChanged}
 				slots={{
-					textField:(props) => LeRed.createElement(DatePickerTextField, {dateFormat, ...props}),
+					textField:DatePickerTextField,
 					toolbar:  (props) => null,
+				}}
+				slotProps={{
+					textField:{dateFormat},
 				}}
 			/>
 			<Button className="lowentry-mui--date-picker--arrow-button" variant="text" color="primary" onClick={() => onChanged(Dayjs(value).add(1, 'day'))}><ArrowForwardIosIcon/></Button>

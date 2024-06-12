@@ -3,7 +3,6 @@
   "version": "1.1.0",
   "private": false,
   "type": "module",
-  "exports": "./dist/external/",
   "description": "Provides utilities for Material UI.",
   "author": "Low Entry",
   "license": "MIT",
@@ -21,6 +20,7 @@
   },
   "scripts": {
     "build": "npm exec -- rollup -c",
+    "prepublishOnly": "mv dist/* ./ && rm -r dist",
     "test": ""
   },
   "peerDependencies": {

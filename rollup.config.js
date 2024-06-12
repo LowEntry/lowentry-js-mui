@@ -16,35 +16,45 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-const generateEntries = (dir) =>
+const getFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
 {
-	const entries = [];
+	const entries = {};
 	fs.readdirSync(dir).forEach(file =>
 	{
 		const fullPath = path.join(dir, file);
 		const stat = fs.statSync(fullPath);
-		if(stat.isDirectory())
+		if(stat.isFile() && file.endsWith('.jsx'))
 		{
-			const subEntries = generateEntries(fullPath);
-			entries.push(...subEntries);
-		}
-		else if(file.endsWith('.jsx'))
-		{
-			entries.push(fullPath);
+			const name = path.basename(file, path.extname(file));
+			entries[namePrefix + name + nameSuffix] = fullPath;
 		}
 	});
 	return entries;
 };
 
 
+const generateIndex = () =>
+{
+	const files = getFilesInDir(path.resolve(__dirname, 'src/widgets'));
+	let imports = [];
+	for(const name in files)
+	{
+		imports.push(`export { default as ${name} } from './widgets/${name}';`);
+	}
+	return imports.join('\n') + '\n';
+};
+fs.writeFileSync(path.resolve(__dirname, 'src/index.js'), generateIndex());
+
+
 export default {
-	input:  [
-		...generateEntries(path.resolve(__dirname, 'src/widgets')),
-	],
+	input:  {
+		...getFilesInDir(path.resolve(__dirname, 'src/widgets'), '', '/index'),
+		'index':'./src/index.js',
+	},
 	output: {
 		dir:           'dist',
 		format:        'es',
-		entryFileNames:'external/[name].js',
+		entryFileNames:'[name].js',
 	},
 	plugins:[
 		del({targets:'dist'}),

@@ -1,11 +1,11 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {LeUtils, FLOAT_LAX, INT_LAX_ANY} from '@lowentry/utils';
-import {TextField} from './TextField.jsx';
 import {LeMuiUtils} from '../LeMuiUtils.js';
+import TextField from './TextField.jsx';
 
 
-export const NumericTextField = LeRed.memo(({decimals, allowZero, allowNegative, value, onChange, onRenderValue, className, inputProps, children, ...props}) =>
+const NumericTextField = LeRed.memo(({decimals, allowZero, allowNegative, value, onChange, onRenderValue, className, inputProps, children, ...props}) =>
 {
 	if(typeof allowZero === 'undefined')
 	{
@@ -114,3 +114,4 @@ export const NumericTextField = LeRed.memo(({decimals, allowZero, allowNegative,
 		<TextField className={'lowentry-mui--numeric-textfield ' + (className ?? '')} type="text" inputProps={{inputMode:'decimal', ...(inputProps ?? {})}} value={!!onRenderValue ? onRenderValue(visualValue) : visualValue} onChange={onChanged} {...props}>{children}</TextField>
 	</>);
 });
+export default NumericTextField;

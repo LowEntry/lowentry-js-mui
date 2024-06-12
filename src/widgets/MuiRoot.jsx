@@ -6,7 +6,7 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import './MuiRoot.css';
 
 
-export const MuiRoot = LeRed.memo(({theme, className, children, ...props}) =>
+const MuiRoot = LeRed.memo(({theme, className, children, ...props}) =>
 {
 	return (<>
 		<CssBaseline/>
@@ -19,3 +19,4 @@ export const MuiRoot = LeRed.memo(({theme, className, children, ...props}) =>
 		</ThemeProvider>
 	</>);
 });
+export default MuiRoot;

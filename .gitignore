@@ -7,3 +7,5 @@ bin/
 build/
 dist/
 coverage/
+
+/src/index.js

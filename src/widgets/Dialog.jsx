@@ -4,7 +4,7 @@ import {STRING} from '@lowentry/utils';
 import {Dialog as MuiDialog} from '@mui/material';
 
 
-export const Dialog = LeRed.memo(({onClose, children, ...props}) =>
+const Dialog = LeRed.memo(({onClose, children, ...props}) =>
 {
 	const onClosed = LeRed.useCallback((event, reason) =>
 	{
@@ -27,3 +27,4 @@ export const Dialog = LeRed.memo(({onClose, children, ...props}) =>
 		</MuiDialog>
 	</>);
 });
+export default Dialog;

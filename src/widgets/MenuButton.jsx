@@ -4,7 +4,7 @@ import {LeUtils, ARRAY} from '@lowentry/utils';
 import {Button, Menu} from '@mui/material';
 
 
-export const MenuButton = LeRed.memo(({icon, className, ref, onClick, onClose, children, ...props}) =>
+const MenuButton = LeRed.memo(({icon, className, ref, onClick, onClose, children, ...props}) =>
 {
 	const buttonRef = LeRed.useRef();
 	const [open, setOpen] = LeRed.useState(false);
@@ -50,3 +50,4 @@ export const MenuButton = LeRed.memo(({icon, className, ref, onClick, onClose, c
 		</Menu>
 	</>);
 });
+export default MenuButton;

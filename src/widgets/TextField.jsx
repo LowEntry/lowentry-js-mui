@@ -4,7 +4,7 @@ import {TextField as MuiTextField} from '@mui/material';
 import './TextField.css';
 
 
-export const TextField = LeRed.memo(({className, onClick, children, ...props}) =>
+const TextField = LeRed.memo(({className, onClick, children, ...props}) =>
 {
 	const onClicked = LeRed.useCallback((event) =>
 	{
@@ -27,3 +27,4 @@ export const TextField = LeRed.memo(({className, onClick, children, ...props}) =
 		<MuiTextField className={'lowentry-mui--textfield ' + (className ?? '')} autoComplete="off" onClick={onClicked} {...props}>{children}</MuiTextField>
 	</>);
 });
+export default TextField;

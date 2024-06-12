@@ -4,7 +4,7 @@ import {IS_ARRAY} from '@lowentry/utils';
 import Dayjs from 'dayjs';
 import {Button, Stack} from '@mui/material';
 import {DatePicker as MuiDatePicker} from '@mui/x-date-pickers';
-import {TextField} from './TextField.jsx';
+import TextField from './TextField.jsx';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './DatePicker.css';
@@ -67,7 +67,7 @@ const DatePickerTextField = LeRed.memo((props) =>
 });
 
 
-export const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, children, ...props}) =>
+const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, children, ...props}) =>
 {
 	if(!dateFormat)
 	{
@@ -109,3 +109,4 @@ export const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, c
 		</Stack>
 	</>);
 });
+export default DatePicker;

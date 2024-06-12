@@ -1,10 +1,10 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {LeMuiUtils} from '../LeMuiUtils';
-import {TextField} from './TextField.jsx';
+import TextField from './TextField.jsx';
 
 
-export const RemovableTextField = LeRed.memo(({className, value, onRemove, onChange, onSelect, children, ...props}) =>
+const RemovableTextField = LeRed.memo(({className, value, onRemove, onChange, onSelect, children, ...props}) =>
 {
 	const onChanged = LeRed.useCallback((event) =>
 	{
@@ -45,3 +45,4 @@ export const RemovableTextField = LeRed.memo(({className, value, onRemove, onCha
 		<TextField className={'lowentry-mui--removable-textfield ' + (className ?? '')} value={LeMuiUtils.prependHiddenChar(value)} onChange={onChanged} onSelect={onSelected} {...props}>{children}</TextField>
 	</>);
 });
+export default RemovableTextField;

@@ -3,7 +3,7 @@ import {LeRed} from '@lowentry/react-redux';
 import {Stack} from '@mui/material';
 
 
-export const Submittable = LeRed.memo(({onSubmit, disabled, sx, children, ...props}) =>
+const Submittable = LeRed.memo(({onSubmit, disabled, sx, children, ...props}) =>
 {
 	const handleSubmit = LeRed.useCallback((event) =>
 	{
@@ -38,3 +38,4 @@ export const Submittable = LeRed.memo(({onSubmit, disabled, sx, children, ...pro
 		</form>
 	</>);
 });
+export default Submittable;

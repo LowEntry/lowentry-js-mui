@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "npm exec -- rollup -c",
-    "prepublishOnly": "mv dist/* ./ && rm -r dist",
+    "prepublishOnly": "rm -r src && mv dist/* ./ && rm -r dist",
     "test": ""
   },
   "peerDependencies": {
@@ -43,9 +43,9 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "cssnano": "^7.0.2",
+    "fs-extra": "^11.2.0",
     "rollup": "^2.79.1",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2"
   }

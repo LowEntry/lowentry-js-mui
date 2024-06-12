@@ -3,17 +3,21 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import del from 'rollup-plugin-delete';
 import terser from '@rollup/plugin-terser';
 import cssnano from 'cssnano';
 
 
 import path from 'path';
 import fs from 'fs';
+import fse from 'fs-extra';
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
+fse.emptyDirSync('dist');
+fse.copySync('src', 'dist/src');
 
 
 const getFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
@@ -35,7 +39,7 @@ const getFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
 
 const generateIndex = () =>
 {
-	const files = getFilesInDir(path.resolve(__dirname, 'src/widgets'));
+	const files = getFilesInDir(path.resolve(__dirname, 'dist/src/widgets'));
 	let imports = [];
 	for(const name in files)
 	{
@@ -48,16 +52,16 @@ fs.writeFileSync(path.resolve(__dirname, 'src/index.js'), generateIndex());
 
 export default {
 	input:  {
-		...getFilesInDir(path.resolve(__dirname, 'src/widgets'), '', '/index'),
-		'index':'./src/index.js',
+		...getFilesInDir(path.resolve(__dirname, 'dist/src/widgets'), '', '/index'),
+		'index':'./dist/src/index.js',
 	},
 	output: {
 		dir:           'dist',
 		format:        'es',
 		entryFileNames:'[name].js',
+		sourcemap:     true,
 	},
 	plugins:[
-		del({targets:'dist'}),
 		peerDepsExternal(),
 		resolve({
 			extensions:['.js', '.jsx'],

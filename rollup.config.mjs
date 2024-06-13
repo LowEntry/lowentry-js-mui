@@ -5,6 +5,8 @@ import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import terser from '@rollup/plugin-terser';
 import cssnano from 'cssnano';
+import autoprefixer from 'autoprefixer';
+import url from '@rollup/plugin-url';
 
 
 import path from 'path';
@@ -20,7 +22,7 @@ fse.emptyDirSync('dist');
 fse.copySync('src', 'dist/src');
 
 
-const getFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
+const getJsxFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
 {
 	const entries = {};
 	fs.readdirSync(dir).forEach(file =>
@@ -39,11 +41,11 @@ const getFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
 
 const generateIndex = () =>
 {
-	const files = getFilesInDir(path.resolve(__dirname, 'dist/src/components'));
+	const files = getJsxFilesInDir(path.resolve(__dirname, 'dist/src/components'));
 	let imports = [];
 	for(const name in files)
 	{
-		imports.push(`export {default as ${name}} from './components/${name}';`);
+		imports.push(`export {default as ${name}} from './components/${name}.jsx';`);
 	}
 	return imports.join('\n') + '\n';
 };
@@ -52,7 +54,7 @@ fs.writeFileSync(path.resolve(__dirname, 'dist/src/index.js'), generateIndex());
 
 export default {
 	input:  {
-		...getFilesInDir(path.resolve(__dirname, 'dist/src/components'), '', '/index'),
+		...getJsxFilesInDir(path.resolve(__dirname, 'dist/src/components'), '', '/index'),
 		'index':'./dist/src/index.js',
 	},
 	output: {
@@ -64,9 +66,7 @@ export default {
 	},
 	plugins:[
 		peerDepsExternal(),
-		resolve({
-			extensions:['.js', '.jsx'],
-		}),
+		resolve(),
 		commonjs(),
 		babel({
 			runtimeHelpers:true,
@@ -75,16 +75,18 @@ export default {
 				'@babel/preset-env',
 				'@babel/preset-react',
 			],
-			'plugins':     [
+			plugins:       [
 				'@babel/plugin-transform-runtime',
 			],
 		}),
 		postcss({
-			plugins: [
+			plugins:[
+				autoprefixer(),
 				cssnano(),
 			],
-			'inject':true,
+			inject: true,
 		}),
+		url(),
 		terser(),
 	],
 };

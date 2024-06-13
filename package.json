@@ -22,6 +22,9 @@
     "prepublishOnly": "rm -r src && mv dist/* ./ && rm -r dist",
     "test": ""
   },
+  "dependencies": {
+    "@mui/x-date-pickers": "^7"
+  },
   "peerDependencies": {
     "@babel/runtime": "*",
     "@emotion/react": "*",
@@ -29,9 +32,7 @@
     "@lowentry/react-redux": "^1",
     "@lowentry/utils": "*",
     "@mui/icons-material": "*",
-    "@mui/lab": "*",
     "@mui/material": "^5",
-    "@mui/x-date-pickers": "^7",
     "dayjs": "^1",
     "react": "*",
     "react-dom": "*"

@@ -55,22 +55,13 @@ export default {
 		...getFilesInDir(path.resolve(__dirname, 'dist/src/widgets'), '', '/index'),
 		'index':'./dist/src/index.js',
 	},
-	output: [
-		{
-			dir:           'dist',
-			format:        'esm',
-			entryFileNames:'[name].mjs',
-			sourcemap:     true,
-			exports:       'named',
-		},
-		{
-			dir:           'dist',
-			format:        'cjs',
-			entryFileNames:'[name].cjs',
-			sourcemap:     true,
-			exports:       'named',
-		},
-	],
+	output: {
+		dir:           'dist',
+		format:        'cjs',
+		entryFileNames:'[name].js',
+		sourcemap:     true,
+		exports:       'named',
+	},
 	plugins:[
 		peerDepsExternal(),
 		resolve({
@@ -78,10 +69,14 @@ export default {
 		}),
 		commonjs(),
 		babel({
-			exclude:'node_modules/**',
-			presets:[
-				['@babel/preset-env', {targets:{node:'current'}}],
+			runtimeHelpers:true,
+			exclude:       'node_modules/**',
+			presets:       [
+				'@babel/preset-env',
 				'@babel/preset-react',
+			],
+			'plugins':     [
+				'@babel/plugin-transform-runtime',
 			],
 		}),
 		postcss({

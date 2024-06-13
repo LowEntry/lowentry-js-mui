@@ -1,7 +1,7 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {Backdrop, CircularProgress} from '@mui/material';
-import './LoadingSpinner.css';
+import './LoadingSpinner.less';
 
 
 let loadingSpinnerCount = {};

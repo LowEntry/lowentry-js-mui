@@ -6,7 +6,7 @@ import {Button, Stack, TextField} from '@mui/material';
 import {DatePicker as MuiDatePicker} from '@mui/x-date-pickers';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import './DatePicker.css';
+import './DatePicker.less';
 
 
 const DatePickerTextField = LeRed.memo((props) =>

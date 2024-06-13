@@ -3,7 +3,7 @@ import {LeRed} from '@lowentry/react-redux';
 import {CssBaseline, ThemeProvider} from '@mui/material';
 import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import './MuiRoot.css';
+import './MuiRoot.less';
 
 
 const MuiRoot = LeRed.memo(({theme, className, children, ...props}) =>

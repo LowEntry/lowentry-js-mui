@@ -43,7 +43,7 @@ const generateIndex = () =>
 	let imports = [];
 	for(const name in files)
 	{
-		imports.push(`export { default as ${name} } from './widgets/${name}';`);
+		imports.push(`export {default as ${name}} from './widgets/${name}';`);
 	}
 	return imports.join('\n') + '\n';
 };
@@ -55,12 +55,22 @@ export default {
 		...getFilesInDir(path.resolve(__dirname, 'dist/src/widgets'), '', '/index'),
 		'index':'./dist/src/index.js',
 	},
-	output: {
-		dir:           'dist',
-		format:        'es',
-		entryFileNames:'[name].js',
-		sourcemap:     true,
-	},
+	output: [
+		{
+			dir:           'dist',
+			format:        'esm',
+			entryFileNames:'[name].mjs',
+			sourcemap:     true,
+			exports:       'named',
+		},
+		{
+			dir:           'dist',
+			format:        'cjs',
+			entryFileNames:'[name].cjs',
+			sourcemap:     true,
+			exports:       'named',
+		},
+	],
 	plugins:[
 		peerDepsExternal(),
 		resolve({
@@ -69,13 +79,16 @@ export default {
 		commonjs(),
 		babel({
 			exclude:'node_modules/**',
-			presets:['@babel/preset-env', '@babel/preset-react'],
+			presets:[
+				['@babel/preset-env', {targets:{node:'current'}}],
+				'@babel/preset-react',
+			],
 		}),
 		postcss({
-			plugins:[
+			plugins: [
 				cssnano(),
 			],
-			inject: true,
+			'inject':true,
 		}),
 		terser(),
 	],

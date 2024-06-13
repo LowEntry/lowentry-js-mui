@@ -1,7 +1,7 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {TextField as MuiTextField} from '@mui/material';
-import './TextField.css';
+import './TextField.less';
 
 
 const TextField = LeRed.memo(({className, onClick, children, ...props}) =>

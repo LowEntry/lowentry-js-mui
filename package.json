@@ -1,6 +1,6 @@
 {
   "name": "@lowentry/mui",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "description": "Provides utilities for Material UI.",
   "author": "Low Entry",

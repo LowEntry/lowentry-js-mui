@@ -39,11 +39,11 @@ const getFilesInDir = (dir, namePrefix = '', nameSuffix = '') =>
 
 const generateIndex = () =>
 {
-	const files = getFilesInDir(path.resolve(__dirname, 'dist/src/widgets'));
+	const files = getFilesInDir(path.resolve(__dirname, 'dist/src/components'));
 	let imports = [];
 	for(const name in files)
 	{
-		imports.push(`export {default as ${name}} from './widgets/${name}';`);
+		imports.push(`export {default as ${name}} from './components/${name}';`);
 	}
 	return imports.join('\n') + '\n';
 };
@@ -52,7 +52,7 @@ fs.writeFileSync(path.resolve(__dirname, 'dist/src/index.js'), generateIndex());
 
 export default {
 	input:  {
-		...getFilesInDir(path.resolve(__dirname, 'dist/src/widgets'), '', '/index'),
+		...getFilesInDir(path.resolve(__dirname, 'dist/src/components'), '', '/index'),
 		'index':'./dist/src/index.js',
 	},
 	output: {

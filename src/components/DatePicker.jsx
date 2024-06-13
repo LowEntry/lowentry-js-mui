@@ -11,7 +11,7 @@ import './DatePicker.less';
 
 const DatePickerTextField = LeRed.memo(({dateFormat, value, className, ...props}) =>
 {
-	const onClick = LeRed.useCallback(() =>
+	const onClick = LeRed.useMemo(() =>
 	{
 		if(props?.ownerState?.open)
 		{

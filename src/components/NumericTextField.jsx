@@ -1,101 +1,99 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
-import {LeUtils, FLOAT_LAX, INT_LAX_ANY} from '@lowentry/utils';
+import {FLOAT_LAX, INT_LAX_ANY, STRING} from '@lowentry/utils';
 import {LeMuiUtils} from '../LeMuiUtils.js';
 import TextField from './TextField.jsx';
 
 
-const NumericTextField = LeRed.memo(({decimals, allowZero, allowNegative, value, onChange, onRenderValue, className, inputProps, children, ...props}) =>
+const getProcessedValue = (value, decimals, allowZero, allowNegative) =>
 {
-	if(typeof allowZero === 'undefined')
-	{
-		allowZero = true;
-	}
-	if(typeof allowNegative === 'undefined')
-	{
-		allowNegative = true;
-	}
-	decimals = INT_LAX_ANY(decimals, 2);
+	let text = LeMuiUtils.purgePrependedHiddenChar(STRING(value));
+	let val = 0;
 	
+	const negative = text.includes('-');
 	
-	const getVisualValue = (value) =>
+	text = text.replace(',', '.').replace(/[^0-9.]/g, '');
+	if(text !== '')
 	{
-		let text = FLOAT_LAX(LeMuiUtils.purgePrependedHiddenChar(value));
-		if(!allowNegative)
+		let stringVal = Math.abs(FLOAT_LAX(text)).toFixed(decimals + 1); // prevents rounding (by adding an extra digit and then cutting it off)
+		stringVal = stringVal.substring(0, stringVal.length - 1);
+		
+		const textDotCount = text.split('.').length - 1;
+		if((textDotCount <= 0) || (decimals <= 0))
 		{
-			text = Math.abs(text);
+			text = stringVal.split('.')[0];
+		}
+		else if((textDotCount === 1) && text.endsWith('.'))
+		{
+			text = stringVal.split('.')[0] + '.';
+		}
+		else
+		{
+			text = stringVal.substring(0, stringVal.length - Math.max(0, decimals - text.split('.')[1].length));
 		}
 		
-		text = text.toFixed(decimals); // rounds it
-		text = LeUtils.trimEnd(LeUtils.trimEnd(text, '0'), '.');
 		if(!allowZero && (text === '0'))
 		{
 			text = '';
 		}
-		return text;
-	};
+	}
+	
+	if(allowNegative && negative)
+	{
+		text = '-' + text;
+	}
+	
+	val = FLOAT_LAX(text);
+	if(val !== 0)
+	{
+		if(decimals > 0)
+		{
+			val = Math.round(val * Math.pow(10, decimals)) / Math.pow(10, decimals);
+		}
+		else
+		{
+			val = Math.round(val);
+		}
+	}
+	
+	return {text, val};
+};
+
+
+const NumericTextField = LeRed.memo(({decimals, allowZero, allowNegative, value, onChange, onRenderValue, className, inputProps, children, ...props}) =>
+{
+	allowZero = !!allowZero;
+	allowNegative = !!allowNegative;
+	decimals = INT_LAX_ANY(decimals, 0);
+	
+	
+	const getVisualValue = LeRed.useCallback((value) =>
+	{
+		return getProcessedValue(value, decimals, allowZero, allowNegative).text;
+	}, [decimals, allowZero, allowNegative]);
 	
 	
 	const [visualValue, setVisualValue] = LeRed.useState(getVisualValue(value));
 	
 	LeRed.useEffect(() =>
 	{
-		setVisualValue(getVisualValue(value));
-	}, [value]);
+		const newVisualValue = getVisualValue(value);
+		if(FLOAT_LAX(visualValue) !== FLOAT_LAX(newVisualValue))
+		{
+			setVisualValue(newVisualValue);
+		}
+	}, [value, getVisualValue]);
 	
 	
 	const onChanged = LeRed.useCallback((event) =>
 	{
 		const originalTargetValue = event.target.value;
-		const targetValue = LeMuiUtils.purgePrependedHiddenChar(originalTargetValue);
+		const {text, val} = getProcessedValue(originalTargetValue, decimals, allowZero, allowNegative);
 		
-		let text = targetValue;
-		let val = 0;
-		
-		{// visual >>
-			const minus = text.includes('-');
-			text = text.replace(',', '.').replace(/[^0-9.]/g, '');
-			if(text !== '')
-			{
-				val = Math.abs(FLOAT_LAX(text));
-				if(allowNegative && minus)
-				{
-					val = -val;
-				}
-				
-				let stringVal = val.toFixed(decimals + 1); // prevents rounding (by adding an extra digit and then cutting it off)
-				stringVal = stringVal.substring(0, stringVal.length - 1);
-				
-				if(!text.includes('.') || (decimals <= 0))
-				{
-					text = stringVal.split('.')[0];
-				}
-				else if(text.endsWith('.'))
-				{
-					text = stringVal.split('.')[0] + '.';
-				}
-				else
-				{
-					text = stringVal.substring(0, stringVal.length - Math.max(0, decimals - text.split('.')[1].length));
-				}
-				setVisualValue(text);
-			}
-		}// visual <<
+		setVisualValue(text);
 		
 		if(onChange)
 		{
-			if(val !== 0)
-			{
-				if(decimals > 0)
-				{
-					val = Math.round(val * Math.pow(10, decimals)) / Math.pow(10, decimals);
-				}
-				else
-				{
-					val = Math.round(val);
-				}
-			}
-			
 			const newEvent = {
 				...event,
 				target:{

@@ -35,7 +35,7 @@ const RemovableNumericTextField = LeRed.memo(({onRemove, onChange, onSelect, cla
 	
 	
 	return (<>
-		<NumericTextField className={'lowentry-mui--removable-textfield lowentry-mui--removable-numeric-textfield ' + (className ?? '')} onRenderValue={LeMuiUtils.prependHiddenChar} onChange={onChanged} onSelect={onSelected}>{children}</NumericTextField>
+		<NumericTextField className={'lowentry-mui--removable-textfield lowentry-mui--removable-numeric-textfield ' + (className ?? '')} onRenderValue={LeMuiUtils.prependHiddenChar} onChange={onChanged} onSelect={onSelected} {...props}>{children}</NumericTextField>
 	</>);
 });
 export default RemovableNumericTextField;

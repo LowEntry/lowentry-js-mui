@@ -1,6 +1,6 @@
 {
   "name": "@lowentry/mui",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "private": false,
   "main": "./index.js",
   "description": "Provides utilities for Material UI.",

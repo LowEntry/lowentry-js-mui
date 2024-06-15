@@ -9,7 +9,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './DatePicker.less';
 
 
-const DatePickerTextField = LeRed.memo(({dateFormat, value, className, ...props}) =>
+const DatePickerTextField = LeRed.memo(({dateFormat, value, className, children, ...props}) =>
 {
 	const onClick = LeRed.useMemo(() =>
 	{
@@ -60,7 +60,7 @@ const DatePickerTextField = LeRed.memo(({dateFormat, value, className, ...props}
 	
 	return (<>
 		<Button variant="outlined" onClick={onClick}>
-			<TextField {...props} className={'lowentry-mui--date-picker--textfield ' + (className ?? '')} variant="outlined" value={Dayjs(value).format(dateFormat)} InputProps={{...(props.InputProps ?? {}), readOnly:true, endAdornment:null, onSelect:onSelect, onSelectCapture:onSelect, onMouseDown:onSelect, onTouchStart:onSelect, onTouchMove:onSelect}}/>
+			<TextField {...props} className={'lowentry-mui--date-picker--textfield ' + (className ?? '')} variant="outlined" value={Dayjs(value).format(dateFormat)} InputProps={{...(props.InputProps ?? {}), readOnly:true, endAdornment:null, onSelect:onSelect, onSelectCapture:onSelect, onMouseDown:onSelect, onTouchStart:onSelect, onTouchMove:onSelect}}>{children}</TextField>
 		</Button>
 	</>);
 });

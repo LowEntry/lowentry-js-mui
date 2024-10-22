@@ -33,7 +33,7 @@ const MenuButton = LeRed.memo(({icon, className, ref, onClick, onClose, children
 	
 	
 	return (<>
-		<Button ref={LeRed.mergeRefs(buttonRef, ref)} className={'lowentry-mui--menu-button allow-mobile-hover ' + (className ?? '')} variant="text" color="primary" onClick={onClicked} {...props}>{icon}</Button>
+		<Button ref={LeRed.mergeRefs(buttonRef, ref)} className={'lowentry-mui--menu-button ' + (className ?? '')} variant="text" color="primary" onClick={onClicked} {...props}>{icon}</Button>
 		<Menu anchorEl={buttonRef.current} open={open} onClose={onClosed}>
 			{LeUtils.mapToArray(ARRAY(children), (child, index) => !!child && LeRed.cloneElement(child, {
 				key:     index,

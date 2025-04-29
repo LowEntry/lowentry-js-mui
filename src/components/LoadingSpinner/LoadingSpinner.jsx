@@ -32,7 +32,7 @@ export const LoadingSpinner = LeRed.memo(({type}) =>
 	{
 		LoadingSpinnerGrab({type});
 		return () => LoadingSpinnerRelease({type});
-	}, []);
+	}, [type]);
 	
 	return null;
 });

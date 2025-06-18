@@ -43,7 +43,7 @@
     "@lowentry/react-redux": "^1",
     "@lowentry/utils": "*",
     "@mui/icons-material": "*",
-    "@mui/material": "^5",
+    "@mui/material": "^6",
     "@mui/x-date-pickers": "^7",
     "dayjs": "^1",
     "react": "*",

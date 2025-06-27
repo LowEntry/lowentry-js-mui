@@ -68,10 +68,15 @@ const DatePickerTextField = LeRed.memo(({dateFormat, value, className, children,
 
 const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, children, ...props}) =>
 {
-	if(!dateFormat)
+	/** @type {*} */
+	const textFieldProps = LeRed.useMemo(() =>
 	{
-		dateFormat = 'ddd, D MMM YYYY';
-	}
+		if(!dateFormat)
+		{
+			return {dateFormat:'ddd, D MMM YYYY'};
+		}
+		return {dateFormat};
+	}, [dateFormat]);
 	
 	const [datepickerOpen, openDatepicker, closeDatepicker] = LeRed.useHistoryState(false);
 	
@@ -96,7 +101,6 @@ const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, children
 				views={['day']}
 				format="YYYY-MM-DD"
 				label=""
-				isRequired={true}
 				value={value}
 				onChange={onChanged}
 				slots={{
@@ -104,7 +108,7 @@ const DatePicker = LeRed.memo(({value, dateFormat, onChange, className, children
 					toolbar:  (props) => null,
 				}}
 				slotProps={{
-					textField:{dateFormat},
+					textField:textFieldProps,
 				}}
 			/>
 			<Button className="lowentry-mui--date-picker--arrow-button" variant="text" color="primary" onClick={() => onChanged(Dayjs(value).add(1, 'day'))}><ArrowForwardIosIcon/></Button>

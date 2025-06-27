@@ -26,7 +26,7 @@ const Dialog = LeRed.memo(({onClose, children, 'aria-label':ariaLabel, ...props}
 	
 	
 	return (<>
-		<MuiDialog className="lowentry-mui--dialog" onClose={onClosed} aria-labelledby={ariaLabelId} {...props}>
+		<MuiDialog className="lowentry-mui--dialog" onClose={onClosed} aria-labelledby={ariaLabelId} open={false} {...props}>
 			<span className="lowentry-mui--dialog--arialabel" id={ariaLabelId} style={{display:'none'}}>{ariaLabel ?? ''}</span>
 			{children}
 		</MuiDialog>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
-import {CssBaseline, ThemeProvider} from '@mui/material';
-import {LocalizationProvider} from '@mui/x-date-pickers';
+import CssBaseline from '@mui/material/CssBaseline';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import './MuiRoot.less';
 

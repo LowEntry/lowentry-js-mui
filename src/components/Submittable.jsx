@@ -1,6 +1,6 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
-import {Stack} from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 
 const Submittable = LeRed.memo(({onSubmit, disabled, sx, children, ...props}) =>

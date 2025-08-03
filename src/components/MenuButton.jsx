@@ -1,7 +1,8 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {LeUtils, ARRAY} from '@lowentry/utils';
-import {Button, Menu} from '@mui/material';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
 
 
 const MenuButton = LeRed.memo(({icon, className, ref, onClick, onClose, children, ...props}) =>

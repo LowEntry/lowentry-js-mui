@@ -1,6 +1,6 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
-import {Avatar as MuiAvatar} from '@mui/material';
+import MuiAvatar from '@mui/material/Avatar';
 
 
 const Avatar = LeRed.memo(({src, slotProps, retryOptions, children, ...props}) =>

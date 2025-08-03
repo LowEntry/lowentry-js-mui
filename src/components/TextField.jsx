@@ -1,6 +1,6 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
-import {TextField as MuiTextField} from '@mui/material';
+import MuiTextField from '@mui/material/TextField';
 import './TextField.less';
 
 

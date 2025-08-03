@@ -1,7 +1,7 @@
 import React from 'react';
 import {LeRed} from '@lowentry/react-redux';
 import {LeUtils, STRING} from '@lowentry/utils';
-import {Dialog as MuiDialog} from '@mui/material';
+import MuiDialog from '@mui/material/Dialog';
 import './Dialog.less';
 
 

@@ -6,7 +6,6 @@ import './LoadingSpinner.less';
 
 
 let loadingSpinnerCount = {};
-let loadingSpinnerCountNonTransparent = 0;
 
 const LoadingSpinnerGrab = ({type}) =>
 {

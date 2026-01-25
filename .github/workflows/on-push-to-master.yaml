@@ -3,6 +3,7 @@ name: on push to master
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.event_name }}

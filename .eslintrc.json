@@ -1,0 +1,131 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"@stylistic",
+		"jsonc"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:jsonc/recommended-with-json"
+	],
+	"ignorePatterns": [
+		"dist",
+		"node_modules",
+		"coverage",
+		"src-old",
+		"*.tgz",
+		"vitest.config.ts",
+		"vitest.legacy.config.ts"
+	],
+	"rules": {
+		"prefer-const": "error",
+		"no-empty": "error",
+		"no-constant-condition": "error",
+		"no-useless-escape": "error",
+		"prefer-rest-params": "error",
+		"no-sparse-arrays": "error",
+		"@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}],
+		"@typescript-eslint/explicit-function-return-type": "error",
+		"@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/consistent-type-assertions": ["error", {"assertionStyle": "never"}],
+		"@typescript-eslint/ban-ts-comment": ["error", {"ts-ignore": "allow-with-description"}],
+		"no-console": ["error", {"allow": ["warn", "error"]}],
+		"@stylistic/indent": ["error", "tab"],
+		"@stylistic/quotes": ["error", "single", {"avoidEscape": true}],
+		"@stylistic/semi": ["error", "always"],
+		"@stylistic/comma-dangle": ["error", "always-multiline"],
+		"@stylistic/brace-style": ["error", "allman"],
+		"@stylistic/max-len": ["error", {"code": 10000}],
+		"@stylistic/arrow-parens": ["error", "always"],
+		"@stylistic/object-curly-spacing": ["error", "never"],
+		"@stylistic/space-before-function-paren": ["error", "never"],
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "default",
+				"format": ["camelCase"],
+				"leadingUnderscore": "allow",
+				"trailingUnderscore": "allow"
+			},
+			{
+				"selector": "variable",
+				"format": ["camelCase", "UPPER_CASE", "PascalCase"],
+				"leadingUnderscore": "allow",
+				"trailingUnderscore": "allow",
+				"filter": {
+					"regex": "^(React|ReactDOM|ReactRedux|Redux|RTK|ReduxSaga|ReduxSagaEffects)$",
+					"match": false
+				}
+			},
+			{
+				"selector": "variable",
+				"format": null,
+				"filter": {
+					"regex": "^(React|ReactDOM|ReactRedux|Redux|RTK|ReduxSaga|ReduxSagaEffects)$",
+					"match": true
+				}
+			},
+			{
+				"selector": "import",
+				"format": null,
+				"filter": {
+					"regex": "^(React|ReactDOM|ReactRedux|Redux|RTK|ReduxSaga|ReduxSagaEffects)$",
+					"match": true
+				}
+			},
+			{
+				"selector": "typeLike",
+				"format": ["PascalCase"]
+			},
+			{
+				"selector": "function",
+				"format": ["camelCase", "UPPER_CASE", "PascalCase"]
+			},
+			{
+				"selector": "parameter",
+				"format": ["camelCase", "PascalCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "typeProperty",
+				"format": ["camelCase", "PascalCase", "UPPER_CASE"]
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": ["*.json", "*.jsonc", "*.json5"],
+			"parser": "jsonc-eslint-parser",
+			"rules": {
+				"@stylistic/indent": ["error", "tab"],
+				"@stylistic/quotes": ["error", "double"],
+				"@stylistic/object-curly-spacing": ["error", "never"],
+				"jsonc/no-comments": "off",
+				"@typescript-eslint/naming-convention": "off",
+				"@typescript-eslint/consistent-type-assertions": "off"
+			}
+		},
+		{
+			"files": ["tests/**/*.ts", "tests/**/*.tsx"],
+			"parserOptions": {
+				"project": null
+			},
+			"rules": {
+				"@typescript-eslint/no-explicit-any": "off",
+				"@typescript-eslint/no-unused-vars": "off",
+				"@typescript-eslint/consistent-type-assertions": "off",
+				"@typescript-eslint/explicit-function-return-type": "off",
+				"@typescript-eslint/naming-convention": "off",
+				"@typescript-eslint/ban-ts-comment": "off",
+				"no-sparse-arrays": "off",
+				"no-console": "off"
+			}
+		}
+	]
+}

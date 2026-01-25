@@ -1,2 +1,33 @@
-.github
-rollup.config.mjs
+# Source files
+src/
+tests/
+
+# Config files
+tsconfig.json
+vitest.config.ts
+.eslintrc.json
+.eslintignore
+
+# Test and coverage
+*.test.ts
+*.test.tsx
+coverage/
+
+# Build artifacts
+*.tsbuildinfo
+*.tgz
+
+# Development
+node_modules/
+.github/
+
+# Git
+.git/
+.gitignore
+.npmignore
+
+# IDE and Caches
+.cache/
+.idea/
+.vs/
+.vscode/

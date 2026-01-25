@@ -1,39 +1,31 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "alwaysStrict": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-jsx",
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "types": [],
-    "noEmit": false,
-    "declaration": true,
-    "declarationMap": false,
-    "outDir": "./build",
-    "removeComments": false,
-    "stripInternal": true,
-    "emitDeclarationOnly": true
-  },
-  "include": [
-    "tsconfig.d.ts",
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "typeAcquisition": {
-    "include": [
-      "react",
-      "react-dom"
-    ]
-  }
+	"compilerOptions": {
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+
+		/* Bundler mode */
+		"moduleResolution": "Bundler",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"outDir": "dist",
+		"noEmit": true
+	},
+	"include": ["src", "tests", "vitest.config.ts", "tsup.config.ts"],
+	"exclude": ["node_modules", "dist"]
 }

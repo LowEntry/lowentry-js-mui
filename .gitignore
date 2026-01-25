@@ -1,9 +1,10 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+*.tgz
 .cache/
 .idea/
 .vs/
 .vscode/
-node_modules/
-bin/
-build/
-dist/
-coverage/
